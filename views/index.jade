@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  div(class='site-container')
+    include ./timeline.jade
+    include ./tweet.jade
+    - var totalMessages = " --- "
+    if messages.length == 0
+      - totalMessages = ""
+    each message in messages
+      - totalMessages += message.message + ' --- '
+    div(class='marquee')
+      p(id='marqueetext') #{totalMessages}
+  script(src='/javascripts/io-interaction.js')

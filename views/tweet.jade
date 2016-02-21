@@ -1,0 +1,17 @@
+div(id='tweet-container')
+  div(id='tweets')
+    each tweet in tweets
+      a(class='tweet' href='http://twitter.com/#{tweet.user.screen_name}/status/#{tweet.id_str}')
+        img(class='twitter_profile_img' src='#{tweet.user.profile_image_url}')
+        div(class='tweet-text')
+          div(class='tweet-username')
+            div #{tweet.user.screen_name}
+              span(class='symbol' style="padding-left: 0.5em;") &#xe086
+          div(class='tweet-container')
+              p #{tweet.text}
+          if tweet.entities.media.length > 0
+            - var index = 0
+            while tweet.entities.media[index].type != 'photo' && index < tweet.entities.media.length - 1
+              - index++
+            if index < tweet.entities.media.length && tweet.entities.media[index].type != ''
+              img(class='tweet-media' src='#{tweet.entities.media[index].media_url}')

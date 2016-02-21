@@ -1,0 +1,13 @@
+div(id='timeline-container')
+  div(id='timeline-absolute-container')
+    section(id='cd-timeline' class='cd-container')
+      each event in events
+        div(class='cd-timeline-block')
+          div(class='cd-timeline-img cd-location')
+            img(src='/images/cd-icon-location.svg')
+
+          div(class='cd-timeline-content')
+            h2 #{event.title}
+            p #{event.location}
+            span(class='cd-date') #{event.time}
+            div(class='cd-day') #{event.day}

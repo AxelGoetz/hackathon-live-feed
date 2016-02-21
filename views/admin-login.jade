@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  div(class='site-container')
+    form(action='/admin/login' method='post')
+      div
+        label Username:
+        input(type='text' name='username')
+      div
+        label Password:
+        input(type='password' name='password')
+      div
+        input(type='submit' value='Log In')

@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='shortcut icon', href='/favicon.png')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='/socket.io/socket.io.js')
+    meta(name='viewport' content ='width=device-width, initial-scale=1')
+  body
+    // If you access the main page
+    if title == 'HackLondon'
+      style.
+        body {
+          overflow-y: hidden;
+        }
+    header(class='site-header')
+      div(class='wrapper')
+        nav(class='site-nav')
+          img(src='/images/logo.png' alt='logo')
+          h1 #HL2016
+          img(src='/images/techsoc-logo.png')
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js')
+    block content

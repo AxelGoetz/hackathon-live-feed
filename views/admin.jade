@@ -1,0 +1,102 @@
+extends layout
+
+block content
+  div(class='admin-container')
+    if sentiment > 0
+      div(class='tweet-sentiment') People are happy :)
+    else
+      div(class='tweet-sentiment') People don't seem to be happy :(
+      
+    div(class='data-header')
+      div Users
+      a(href='#' class='show-popup' data-showpopup='1') New
+    div(class='data')
+      each user in users
+        div(class='data-point user')
+          div #{user.username}
+          a(onclick="$.ajax({ url: '/users/#{user.id}', method: 'DELETE' }); location.reload();")
+            img(src='/images/delete_sign.png')
+
+    div(class='data-header')
+      div Messages
+      a(href='#' class='show-popup' data-showpopup='2') New
+    div(class='data')
+      each message in messages
+        div(class='data-point message')
+          div #{message.message}
+          a(onclick="$.ajax({ url: '/messages/#{message.id}', method: 'DELETE' }); location.reload();")
+            img(src='/images/delete_sign.png')
+
+    div(class='data-header')
+      div Events
+      a(href='#' class='show-popup' data-showpopup='3') New
+    div(class='data')
+      each event in events
+        div(class='data-point event')
+          div
+            div #{event.title}
+            div #{event.time}
+            div #{event.location}
+            div day: #{event.day}
+          a(onclick="$.ajax({ url: '/events/#{event.id}', method: 'DELETE' }); location.reload();")
+            img(src='/images/delete_sign.png')
+
+  div(class='overlay-bg')
+
+  div(class='overlay-content popup1')
+    div(class='popup-header') New User
+    form(action='/users' method='post')
+      div
+        label Username:
+        input(type='text' name='username')
+      div
+        label Password:
+        input(type='password' name='password')
+      div
+        input(type='submit' value='Add')
+    button(class='close-btn') Close
+
+  div(class='overlay-content popup2')
+    div(class='popup-header') New Message
+    form(action='/messages' method='post')
+      div
+        label message:
+        input(type='text' name='message')
+      div
+        input(type='submit' value='Add')
+    button(class='close-btn') Close
+
+  div(class='overlay-content popup3')
+    div(class='popup-header') New Event
+    form(action='/events' method='post' id='event-form')
+      div
+        label title:
+        input(type='text' name='title')
+      div(class='time')
+        label time:
+        select(name='firsthour')
+          - for(var i = 0; i < 24; i++)
+            option #{i}
+        select(name='firstmin')
+          - for(var i = 0; i < 60; i++)
+            option #{i}
+        div -
+        select(name='secondhour')
+          - for(var i = 0; i < 24; i++)
+            option #{i}
+        select(name='secondmin')
+          - for(var i = 0; i < 60; i++)
+            option #{i}
+      div
+        label day
+          select(name='day')
+            option 1
+            option 2
+      div
+        label location:
+        input(type='text' name='location')
+      div
+        input(type='submit' value='Add')
+    button(class='close-btn') Close
+
+  script(src='/javascripts/popup.js')
