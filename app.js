@@ -500,6 +500,7 @@ var tweets = [];
 var hashtags = ['hacklondon', 'hl2016'];
 var streams = [];
 function emitTweet(tweet) {
+  tweet.user.profile_image_url = tweet.user.profile_image_url.substr(0, tweet.user.profile_image_url.length - 7);
   if(tweets.length === 0) {
     getTweetsFromDB();
   }

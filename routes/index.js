@@ -4,7 +4,7 @@ var crypto = require('crypto');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-var sqlite3 = require('sqlite3').verbose()
+var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('main.db');
 
 function hashPassword(password, salt) {
@@ -26,7 +26,7 @@ router.all('/', function(req, res, next) {
       console.log(messages);
       res.render('index', { title: 'DSSC', messages: messages, events: events });
     }
-  }
+  };
 
   db.all('SELECT * FROM messages', function(err, rows) {
     messages = rows;
