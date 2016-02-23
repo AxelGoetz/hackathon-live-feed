@@ -450,7 +450,7 @@ function getTweetsFromDB() {
         var tweet = {user: {}, entities: {media: []}};
         tweet.sentiment = e.sentiment;
         tweet.user.screen_name = e.screen_name;
-        tweet.user.profile_image_url = e.profile_image_url;
+        tweet.user.profile_image_url = e.profile_image_ur.replace('_normal', "");
         tweet.text = e.text;
         tweet.id_str = e.id_str;
         if(e.media_url === null) e.media_url = '';
