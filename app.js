@@ -450,7 +450,11 @@ function getTweetsFromDB() {
         var tweet = {user: {}, entities: {media: []}};
         tweet.sentiment = e.sentiment;
         tweet.user.screen_name = e.screen_name;
-        tweet.user.profile_image_url = e.profile_image_url;
+        if(e.profile_image_url !== null) {
+          tweet.user.profile_image_url = e.profile_image_url.replace('_normal', '_bigger');
+        } else {
+          tweet.user.profile_image_url = e.profile_image_url;
+        }
         tweet.text = e.text;
         tweet.id_str = e.id_str;
         if(e.media_url === null) e.media_url = '';
@@ -500,6 +504,9 @@ var tweets = [];
 var hashtags = ['hacklondon', 'hl2016'];
 var streams = [];
 function emitTweet(tweet) {
+  if(tweet.user !== null) {
+    tweet.user.profile_image_url = tweet.user.profile_image_url.replace('_normal', "_bigger");
+  }
   if(tweets.length === 0) {
     getTweetsFromDB();
   }
