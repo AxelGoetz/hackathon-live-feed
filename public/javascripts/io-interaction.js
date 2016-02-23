@@ -8,8 +8,9 @@ socket.on('tweet', function(tweet) {
   // if(!linkNotBroken(link)) {
   //   link = '#';
   // }
+  tweet.user.profile_image_url = tweet.user.profile_image_url.replace(/^_normal/, "");
   var tweetString = '<a class="tweet" href="' + link + '">' ;
-  tweetString += '<img class="twitter_profile_img" src="' + tweet.user.profile_image_url.substr(0, tweet.user.profile_image_url.length - 7) + '">';
+  tweetString += '<img class="twitter_profile_img" src="' + tweet.user.profile_image_url + '">';
   tweetString += '<div class="tweet-text">';
   tweetString += '<div class="tweet-username">';
   tweetString += '<div>' + tweet.user.screen_name;
