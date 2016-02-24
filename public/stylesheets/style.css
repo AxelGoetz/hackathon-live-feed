@@ -520,7 +520,7 @@ a.symbol {
 #tweet-container {
   height: 82%;
   width: 39%;
-  margin-top: 20px;
+  /* margin-top: 20px; */
   margin-left: 20px;
   margin-bottom: 40px;
 }
@@ -531,6 +531,8 @@ a.symbol {
   height: 82%;
   width: 39%;
   overflow: auto;
+  bottom: 0px;
+  top: 100px;
 }
 
 .tweet {
